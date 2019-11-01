@@ -14,8 +14,6 @@
 
 #![warn(missing_docs)]
 
-use failure;
-
 /// Create a new output
 pub fn new() -> Output {
     Output::default()

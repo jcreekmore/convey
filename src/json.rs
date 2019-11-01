@@ -1,7 +1,6 @@
 //! JSON output
 
 use crate::{Error, Target};
-use failure::ResultExt;
 use serde::Serialize;
 use serde_json::to_vec as write_json;
 use std::io::Write;
@@ -28,7 +27,12 @@ pub fn file<T: AsRef<Path>>(name: T) -> Result<Target, Error> {
                 .write(true)
                 .append(true)
                 .open(&path)
-                .with_context(|_| format!("Can't open file `{}` as JSON target", path.display()))?;
+                .map_err(|e| {
+                    Error::io_context(
+                        format!("Can't open file `{}` as JSON target", path.display()),
+                        e,
+                    )
+                })?;
             f.write_all(b"\n")?;
 
             f

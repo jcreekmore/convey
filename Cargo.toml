@@ -25,8 +25,6 @@ required-features = ["log"]
 termcolor = "1.0.4"
 serde = "1.0.79"
 serde_json = "1.0.31"
-failure_derive = "0.1.2"
-failure = "0.1.2"
 serde_derive = "1.0.79"
 crossbeam-channel = "0.3.4"
 log = { version = "0.4.6", features = ["std", "serde"], optional = true }
